@@ -1,3 +1,4 @@
+import 'package:fake_artist/widgets/button.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        scaffoldBackgroundColor: const Color(0xFFFFFFF4),
         // This is the theme of your application.
         //
         // Try running your application with "flutter run". You'll see the
@@ -35,8 +37,17 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Fake Artist"),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CustomButton(
+              buttonText: "Iniciar Jogo",
+              onPressed: () {},
+              type: 1,
+            ),
+          ],
+        ),
       ),
     );
   }

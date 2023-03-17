@@ -1,4 +1,5 @@
 import 'package:fake_artist/widgets/button.dart';
+import 'package:fake_artist/widgets/polaroid.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -46,6 +47,14 @@ class Home extends StatelessWidget {
               onPressed: () {},
               type: 1,
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: const [
+                Polaroid(),
+                Polaroid(),
+                Polaroid(),
+              ],
+            )
           ],
         ),
       ),

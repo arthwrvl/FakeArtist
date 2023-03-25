@@ -70,6 +70,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  flutter_statusbarcolor:
+    dependency: "direct main"
+    description:
+      name: flutter_statusbarcolor
+      sha256: "37da09a13840f43d7ef4cd7ac8ad718ba8de68a1d89959199413f9b4c4d5f8dc"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.3"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -185,4 +193,5 @@ packages:
     source: hosted
     version: "2.1.4"
 sdks:
-  dart: ">=2.19.0-444.6.beta <4.0.0"
+  dart: ">=2.19.0-444.6.beta <3.0.0"
+  flutter: ">=0.1.4"

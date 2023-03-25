@@ -1,5 +1,5 @@
 import 'package:fake_artist/widgets/button.dart';
-import 'package:fake_artist/widgets/polaroid.dart';
+import 'package:fake_artist/widgets/smallPlayerCard.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -37,6 +37,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       body: Center(
         child: Column(
@@ -49,10 +50,12 @@ class Home extends StatelessWidget {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                Polaroid(),
-                Polaroid(),
-                Polaroid(),
+              children: [
+                SmallPlayerCard(
+                  title: "Name",
+                  bgColor: const Color(0xFFC89FFD),
+                  size: size.width * 0.3,
+                ),
               ],
             )
           ],

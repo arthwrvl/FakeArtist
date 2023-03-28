@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fake_artist/styles/drawings.dart';
+import 'package:lottie/lottie.dart';
 
 class MenuName extends StatefulWidget {
   const MenuName({super.key});
@@ -39,9 +40,26 @@ class PolaroidMenu extends StatefulWidget {
   State<PolaroidMenu> createState() => _PolaroidMenuState();
 }
 
-class _PolaroidMenuState extends State<PolaroidMenu> {
+class _PolaroidMenuState extends State<PolaroidMenu>
+    with TickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(vsync: this);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _controller.dispose();
+    super.dispose();
+  }
+
   int rand = Random().nextInt(8);
-  var drawings = [line1, line2, line3, line4, line5, line6, line7];
+  bool loaded = false;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -64,7 +82,13 @@ class _PolaroidMenuState extends State<PolaroidMenu> {
               height: size.width * 0.56 * 0.87,
               color: const Color(0xFF95F0C5),
             ),
-            SvgPicture.asset(drawings[rand], width: size.width * 0.56 * 0.87),
+            Lottie.asset('assets/random_drawings/menu/line1.json',
+                controller: _controller, onLoaded: (composition) {
+              _controller.duration = composition.duration;
+              Future.delayed(const Duration(milliseconds: 700), () {
+                _controller.forward();
+              });
+            })
           ],
         ),
         Align(

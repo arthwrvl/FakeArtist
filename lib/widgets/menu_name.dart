@@ -58,7 +58,8 @@ class _PolaroidMenuState extends State<PolaroidMenu>
     super.dispose();
   }
 
-  int rand = Random().nextInt(8);
+  int rand = Random().nextInt(7);
+  var drawings = [line1, line2, line3, line4, line5, line6, line7];
   bool loaded = false;
   @override
   Widget build(BuildContext context) {
@@ -82,11 +83,28 @@ class _PolaroidMenuState extends State<PolaroidMenu>
               height: size.width * 0.56 * 0.87,
               color: const Color(0xFF95F0C5),
             ),
-            Lottie.asset('assets/random_drawings/menu/line1.json',
-                controller: _controller, onLoaded: (composition) {
+            Lottie.asset(drawings[rand], controller: _controller,
+                onLoaded: (composition) {
               _controller.duration = composition.duration;
-              Future.delayed(const Duration(milliseconds: 700), () {
-                _controller.forward();
+              Future.delayed(const Duration(milliseconds: 300), () {
+                _controller.forward().whenComplete(() {
+                  Future.delayed(const Duration(seconds: 2), () {
+                    setState(() {
+                      int nextrand = Random().nextInt(7);
+                      if (nextrand == rand) {
+                        if (nextrand != 6) {
+                          rand = nextrand + 1;
+                        } else {
+                          rand = nextrand - 1;
+                        }
+                      } else {
+                        rand = nextrand;
+                      }
+                      _controller.duration = composition.duration;
+                      _controller.value = 0;
+                    });
+                  });
+                });
               });
             })
           ],

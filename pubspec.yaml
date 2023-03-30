@@ -63,6 +63,12 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
      - assets/random_drawings/menu/line1.json
+     - assets/random_drawings/menu/line2.json
+     - assets/random_drawings/menu/line3.json
+     - assets/random_drawings/menu/line4.json
+     - assets/random_drawings/menu/line5.json
+     - assets/random_drawings/menu/line6.json
+     - assets/random_drawings/menu/line7.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

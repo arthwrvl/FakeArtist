@@ -1,6 +1,6 @@
+import 'package:fake_artist/pages/player_list.dart';
 import 'package:fake_artist/widgets/button.dart';
 import 'package:fake_artist/widgets/menu_name.dart';
-import 'package:fake_artist/widgets/small_player_card.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -24,7 +24,12 @@ class Home extends StatelessWidget {
                   children: [
                     CustomButton(
                       buttonText: "Iniciar Jogo",
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const PlayerGrid()));
+                      },
                       type: 1,
                     ),
                     SizedBox(height: size.height * .03),

@@ -17,3 +17,22 @@ const lightblue = Color(0xFF99CFD2);
 const red = Color(0xFFFF7878);
 const yellow = Color(0xFFDBFD00);
 const cyan = Color(0xFF00E0FF);
+
+var colors = [
+  babyblue,
+  babygreen,
+  babyorange,
+  lightyellow,
+  lightgreen,
+  blue,
+  green,
+  orange,
+  pink,
+  purple,
+  gray,
+  brown,
+  lightblue,
+  red,
+  yellow,
+  cyan
+];

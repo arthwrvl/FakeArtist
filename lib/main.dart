@@ -1,4 +1,5 @@
 import 'package:fake_artist/pages/home.dart';
+import 'package:fake_artist/pages/player_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

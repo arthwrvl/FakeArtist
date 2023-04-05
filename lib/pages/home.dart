@@ -19,7 +19,7 @@ class Home extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                MenuName(),
+                const MenuName(),
                 Column(
                   children: [
                     CustomButton(

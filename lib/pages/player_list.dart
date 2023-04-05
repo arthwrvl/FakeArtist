@@ -1,5 +1,6 @@
 import 'package:fake_artist/classes/player.dart';
 import 'package:fake_artist/data/players.dart';
+import 'package:fake_artist/pages/edit_player.dart';
 import 'package:fake_artist/styles/colors.dart';
 import 'package:fake_artist/styles/drawings.dart';
 import 'package:fake_artist/widgets/button.dart';
@@ -70,6 +71,16 @@ class _PlayerGridState extends State<PlayerGrid> {
                       player: player,
                       size: size.width * 0.3,
                       showPoints: false,
+                      onTap: () {
+                        Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        EditPlayer(player: player)))
+                            .then((value) => setState(
+                                  () {},
+                                ));
+                      },
                       onDoubleTap: () {
                         setState(() {
                           removePlayer(player);

@@ -9,6 +9,7 @@ class PlayerCard extends StatefulWidget {
   final Player player;
   final bool showPoints;
   final VoidCallback onDoubleTap;
+  final VoidCallback onTap;
   //add image
   const PlayerCard({
     super.key,
@@ -16,6 +17,7 @@ class PlayerCard extends StatefulWidget {
     required this.size,
     required this.showPoints,
     required this.onDoubleTap,
+    required this.onTap,
   });
 
   @override
@@ -34,6 +36,7 @@ class _PlayerCardState extends State<PlayerCard> {
           },
         )
       },
+      onTap: widget.onTap,
       onTapCancel: () => {
         setState(
           () {

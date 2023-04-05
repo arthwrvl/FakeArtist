@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
             primary: const Color(0xFFFFFFF4),
             secondary: const Color(0xFFA3E8FF)),
       ),
-      home: const PlayerGrid(),
+      home: const Home(),
     );
   }
 }

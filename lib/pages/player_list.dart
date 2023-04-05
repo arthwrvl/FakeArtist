@@ -71,7 +71,7 @@ class _PlayerGridState extends State<PlayerGrid> {
           children: playerClasses
               .map(
                 (Player player) => PlayerCard(
-                  key: ValueKey(player.name),
+                  key: ValueKey(playerClasses.indexOf(player)),
                   player: player,
                   size: size.width * 0.3,
                   showPoints: false,

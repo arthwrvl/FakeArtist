@@ -19,6 +19,15 @@ class MyApp extends StatelessWidget {
       title: 'Fake Artist',
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xFFFFFFF4),
+        appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.transparent,
+            elevation: 0.0,
+            centerTitle: true,
+            foregroundColor: Colors.black,
+            titleTextStyle: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+                fontWeight: FontWeight.bold)),
         // This is the theme of your application.
         //
         // Try running your application with "flutter run". You'll see the
@@ -28,9 +37,11 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+            primary: const Color(0xFFFFFFF4),
+            secondary: const Color(0xFFA3E8FF)),
       ),
-      home: const Home(),
+      home: const PlayerGrid(),
     );
   }
 }

@@ -6,4 +6,11 @@ List<String> players = [
   "Jin",
   "J-hope",
   "RM",
+  "Jungkook",
+  "Jimin",
+  "V",
+  "Suga",
+  "Jin",
+  "J-hope",
+  "RM",
 ];

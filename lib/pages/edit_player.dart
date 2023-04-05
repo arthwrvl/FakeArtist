@@ -1,6 +1,7 @@
 import 'package:fake_artist/styles/drawings.dart';
 import 'package:fake_artist/widgets/button.dart';
 import 'package:fake_artist/widgets/player_final_card.dart';
+import 'package:fake_artist/widgets/textField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -45,18 +46,19 @@ class _EditPlayerState extends State<EditPlayer> {
                     flex: 2,
                     child: PlayerFinalCard(player: _player)),
                 Flexible(
-                    flex: 2,
-                    fit: FlexFit.tight,
-                    child: TextField(
-                      controller: _controller,
-                      onChanged: (e) {
-                        setState(
-                          () {
-                            _player.name = _controller.text;
-                          },
-                        );
-                      },
-                    )),
+                  flex: 2,
+                  fit: FlexFit.tight,
+                  child: CustomTextField(
+                    controller: _controller,
+                    onEdit: () => {
+                      setState(
+                        () {
+                          _player.name = _controller.text;
+                        },
+                      )
+                    },
+                  ),
+                ),
                 Flexible(
                     flex: 1,
                     child: CustomButton(

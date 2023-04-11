@@ -1,6 +1,7 @@
 import 'package:fake_artist/classes/player.dart';
 import 'package:fake_artist/data/players.dart';
 import 'package:fake_artist/pages/edit_player.dart';
+import 'package:fake_artist/pages/resume.dart';
 import 'package:fake_artist/styles/colors.dart';
 import 'package:fake_artist/styles/drawings.dart';
 import 'package:fake_artist/widgets/blank_player_card.dart';
@@ -94,8 +95,17 @@ class _PlayerGridState extends State<PlayerGrid> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 20),
-            child:
-                CustomButton(buttonText: "Avançar", onPressed: () {}, type: 1),
+            child: CustomButton(
+                buttonText: "Avançar",
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            Resume(playerClasses: playerClasses),
+                      ));
+                },
+                type: 1),
           ),
         ],
       ),

@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:fake_artist/pages/master.dart';
 import 'package:fake_artist/widgets/button.dart';
 import 'package:fake_artist/widgets/textField.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +68,7 @@ class _ResumeState extends State<Resume> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(12),
                     child:
                         CustomTextField(controller: _controller, onEdit: () {}),
                   ),
@@ -79,7 +82,9 @@ class _ResumeState extends State<Resume> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     CustomButton(
-                        buttonText: "Avançar", onPressed: () {}, type: 1),
+                        buttonText: "Iniciar Partida",
+                        onPressed: callMaster,
+                        type: 1),
                     SizedBox(
                       height: size.height / 10,
                     )
@@ -87,6 +92,14 @@ class _ResumeState extends State<Resume> {
                 )),
           ],
         ));
+  }
+
+  void callMaster() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                MasterManagement(players: widget.playerClasses)));
   }
 }
 

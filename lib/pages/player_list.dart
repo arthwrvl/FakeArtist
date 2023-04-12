@@ -33,6 +33,7 @@ class _PlayerGridState extends State<PlayerGrid> {
       }
     }
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text("Jogadores: ${playerClasses.length}"),
       ),

@@ -87,6 +87,9 @@ class _PlayerCardState extends State<PlayerCard> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   widget.player.name,
+                  maxLines: 1,
+                  softWrap: false,
+                  overflow: TextOverflow.fade,
                   style: const TextStyle(
                       fontSize: 20, fontWeight: FontWeight.bold),
                 ),

@@ -104,6 +104,8 @@ class _PlayerFinalCardState extends State<PlayerFinalCard> {
                     padding: EdgeInsets.only(left: size.width * 0.56 * 0.04),
                     child: Text(
                       widget.player.name,
+                      maxLines: 1,
+                      overflow: TextOverflow.fade,
                       style: const TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,

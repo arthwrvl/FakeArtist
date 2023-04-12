@@ -8,7 +8,9 @@ import 'package:flutter/src/widgets/placeholder.dart';
 
 class MasterManagement extends StatefulWidget {
   final List<Player> players;
-  const MasterManagement({super.key, required this.players});
+  final int maxPoints;
+  const MasterManagement(
+      {super.key, required this.players, required this.maxPoints});
 
   @override
   State<MasterManagement> createState() => _MasterManagementState();
@@ -40,9 +42,6 @@ class _MasterManagementState extends State<MasterManagement> {
                   sortRoles();
                 });
               }),
-          Text(playerNames(excludeMasters)),
-          Text(playerNames(widget.players)),
-          Text(playerRoles(widget.players)),
         ],
       ),
     );
@@ -50,16 +49,17 @@ class _MasterManagementState extends State<MasterManagement> {
 
   void sortRoles() {
     resetRoles();
+    var random = Random.secure();
     List<int> avaliableIndex =
         List.generate(widget.players.length, (index) => index, growable: true);
-    int randM = Random().nextInt(excludeMasters.length);
+    int randM = random.nextInt(excludeMasters.length);
     widget.players[widget.players.indexOf(excludeMasters[randM])]
         .setRole(Role.master);
     currentMaster =
         widget.players[widget.players.indexOf(excludeMasters[randM])];
     excludeMasters.removeAt(randM);
     avaliableIndex.remove(widget.players.indexOf(currentMaster));
-    int randF = Random().nextInt(avaliableIndex.length);
+    int randF = random.nextInt(avaliableIndex.length);
     widget.players[avaliableIndex[randF]].setRole(Role.fake);
   }
 

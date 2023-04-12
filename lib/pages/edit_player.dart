@@ -49,6 +49,7 @@ class _EditPlayerState extends State<EditPlayer> {
                   flex: 2,
                   fit: FlexFit.tight,
                   child: CustomTextField(
+                    type: 1,
                     controller: _controller,
                     onEdit: () => {
                       setState(

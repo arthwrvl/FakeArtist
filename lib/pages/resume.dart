@@ -21,6 +21,7 @@ class Resume extends StatefulWidget {
 
 class _ResumeState extends State<Resume> {
   late TextEditingController _controller;
+  late int maxValue = 5;
 
   @override
   void initState() {
@@ -37,6 +38,7 @@ class _ResumeState extends State<Resume> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text("Resumo da Partida"),
         ),
@@ -69,8 +71,14 @@ class _ResumeState extends State<Resume> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(12),
-                    child:
-                        CustomTextField(controller: _controller, onEdit: () {}),
+                    child: CustomTextField(
+                        controller: _controller,
+                        type: 2,
+                        onEdit: () {
+                          setState(() {
+                            maxValue = int.parse(_controller.text);
+                          });
+                        }),
                   ),
                 ],
               ),
@@ -98,8 +106,10 @@ class _ResumeState extends State<Resume> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) =>
-                MasterManagement(players: widget.playerClasses)));
+            builder: (context) => MasterManagement(
+                  players: widget.playerClasses,
+                  maxPoints: maxValue,
+                )));
   }
 }
 

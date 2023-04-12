@@ -1,3 +1,5 @@
+import 'package:fake_artist/widgets/button.dart';
+import 'package:fake_artist/widgets/textField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -15,6 +17,19 @@ class Resume extends StatefulWidget {
 }
 
 class _ResumeState extends State<Resume> {
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    _controller = TextEditingController(text: "5");
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -23,17 +38,53 @@ class _ResumeState extends State<Resume> {
           title: Text("Resumo da Partida"),
         ),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: EdgeInsets.all(12),
-                child: Text("Jogadores: ${widget.playerClasses.length}",
-                    style:
-                        TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            Flexible(
+              flex: 1,
+              fit: FlexFit.tight,
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Text("Jogadores: ${widget.playerClasses.length}",
+                          style: const TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                  PlayersResume(playerClasses: widget.playerClasses),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: EdgeInsets.all(12),
+                      child: Text("Pontuação Máxima",
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(12),
+                    child:
+                        CustomTextField(controller: _controller, onEdit: () {}),
+                  ),
+                ],
               ),
             ),
-            PlayersResume(playerClasses: widget.playerClasses),
+            Flexible(
+                flex: 1,
+                fit: FlexFit.loose,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    CustomButton(
+                        buttonText: "Avançar", onPressed: () {}, type: 1),
+                    SizedBox(
+                      height: size.height / 10,
+                    )
+                  ],
+                )),
           ],
         ));
   }

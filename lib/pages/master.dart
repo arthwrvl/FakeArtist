@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:fake_artist/classes/player.dart';
+import 'package:fake_artist/pages/displayRoles.dart';
 import 'package:fake_artist/widgets/button.dart';
 import 'package:fake_artist/widgets/player_card.dart';
 import 'package:fake_artist/widgets/player_final_card.dart';
@@ -68,10 +69,17 @@ class _MasterManagementState extends State<MasterManagement> {
               ],
             ),
           ),
-          CustomButton(buttonText: "Avançar", onPressed: () {}, type: 1)
+          CustomButton(buttonText: "Avançar", onPressed: finishSetup, type: 1)
         ],
       ),
     );
+  }
+
+  void finishSetup() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => DisplayRoles(players: widget.players)));
   }
 
   void sortRoles() {
@@ -94,21 +102,5 @@ class _MasterManagementState extends State<MasterManagement> {
     for (int i = 0; i < widget.players.length; i++) {
       widget.players[i].setRole(Role.artist);
     }
-  }
-
-  String playerNames(List<Player> players) {
-    String names = "";
-    for (int i = 0; i < players.length; i++) {
-      names += "${players[i].name} | ";
-    }
-    return names;
-  }
-
-  String playerRoles(List<Player> players) {
-    String roles = "";
-    for (int i = 0; i < players.length; i++) {
-      roles += "${players[i].role} | ";
-    }
-    return roles;
   }
 }

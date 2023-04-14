@@ -1,7 +1,10 @@
 import 'dart:math';
 
 import 'package:fake_artist/classes/player.dart';
+import 'package:fake_artist/widgets/button.dart';
 import 'package:fake_artist/widgets/player_card.dart';
+import 'package:fake_artist/widgets/player_final_card.dart';
+import 'package:fake_artist/widgets/textField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -19,10 +22,13 @@ class MasterManagement extends StatefulWidget {
 class _MasterManagementState extends State<MasterManagement> {
   late List<Player> excludeMasters = List.of(widget.players);
   late Player currentMaster;
-
+  late TextEditingController _wordController;
+  late TextEditingController _themeController;
   @override
   void initState() {
     super.initState();
+    _themeController = TextEditingController();
+    _wordController = TextEditingController();
     sortRoles();
   }
 
@@ -32,16 +38,30 @@ class _MasterManagementState extends State<MasterManagement> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          PlayerCard(
-              player: currentMaster,
-              size: 200,
-              showPoints: true,
-              onDoubleTap: () {},
-              onTap: () {
-                setState(() {
-                  sortRoles();
-                });
-              }),
+          PlayerFinalCard(
+            player: currentMaster,
+            canEdit: false,
+            showPoints: true,
+          ),
+          Padding(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              children: [
+                CustomTextField(
+                    controller: _wordController,
+                    onEdit: () {},
+                    type: 1,
+                    placeholder: "Título da Rodada"),
+                SizedBox(height: 20),
+                CustomTextField(
+                    controller: _themeController,
+                    onEdit: () {},
+                    type: 1,
+                    placeholder: "Tema da Rodada"),
+              ],
+            ),
+          ),
+          CustomButton(buttonText: "Avançar", onPressed: () {}, type: 1)
         ],
       ),
     );

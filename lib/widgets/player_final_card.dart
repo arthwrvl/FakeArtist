@@ -6,7 +6,13 @@ import '../classes/player.dart';
 
 class PlayerFinalCard extends StatefulWidget {
   final Player player;
-  const PlayerFinalCard({super.key, required this.player});
+  final bool canEdit;
+  final bool showPoints;
+  const PlayerFinalCard(
+      {super.key,
+      required this.player,
+      required this.canEdit,
+      required this.showPoints});
 
   @override
   State<PlayerFinalCard> createState() => _PlayerFinalCardState();
@@ -50,22 +56,24 @@ class _PlayerFinalCardState extends State<PlayerFinalCard> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            IconButton(
-                onPressed: () {
-                  setState(() {
-                    if (iconIndex > 0) {
-                      iconIndex--;
-                    } else {
-                      iconIndex = icons.length - 1;
-                    }
-                    widget.player.icon = icons[iconIndex];
-                  });
-                },
-                icon: const Icon(Icons.arrow_back),
-                iconSize: 48),
+            widget.canEdit
+                ? IconButton(
+                    onPressed: () {
+                      setState(() {
+                        if (iconIndex > 0) {
+                          iconIndex--;
+                        } else {
+                          iconIndex = icons.length - 1;
+                        }
+                        widget.player.icon = icons[iconIndex];
+                      });
+                    },
+                    icon: const Icon(Icons.arrow_back),
+                    iconSize: 48)
+                : Container(),
             Container(
-              width: size.width * 0.46,
-              height: size.width * 0.46 * 1.4,
+              width: size.width * 0.52,
+              height: size.width * 0.52 * 1.3,
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.black, width: 6),
                   color: const Color(0xFFE8F1D7),
@@ -73,28 +81,30 @@ class _PlayerFinalCardState extends State<PlayerFinalCard> {
                     BoxShadow(color: Colors.black, offset: Offset(5, 5))
                   ]),
               child: Column(children: [
-                SizedBox(height: size.width * 0.46 * .04),
+                SizedBox(height: size.width * 0.52 * .04),
                 GestureDetector(
                   onTap: () {
-                    setState(() {
-                      if (colorIndex < colors.length - 1) {
-                        colorIndex++;
-                      } else {
-                        colorIndex = 0;
-                      }
-                      widget.player.background = colors[colorIndex];
-                    });
+                    if (widget.canEdit) {
+                      setState(() {
+                        if (colorIndex < colors.length - 1) {
+                          colorIndex++;
+                        } else {
+                          colorIndex = 0;
+                        }
+                        widget.player.background = colors[colorIndex];
+                      });
+                    }
                   },
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
                       Container(
-                        width: size.width * 0.46 * 0.87,
-                        height: size.width * 0.46 * 0.87,
+                        width: size.width * 0.52 * 0.87,
+                        height: size.width * 0.52 * 0.87,
                         color: widget.player.background,
                       ),
                       SvgPicture.asset(widget.player.icon,
-                          width: size.width * 0.46 * 0.87),
+                          width: size.width * 0.52 * 0.87),
                     ],
                   ),
                 ),
@@ -115,19 +125,21 @@ class _PlayerFinalCardState extends State<PlayerFinalCard> {
                 ),
               ]),
             ),
-            IconButton(
-                onPressed: () {
-                  setState(() {
-                    if (iconIndex < icons.length - 1) {
-                      iconIndex++;
-                    } else {
-                      iconIndex = 0;
-                    }
-                    widget.player.icon = icons[iconIndex];
-                  });
-                },
-                icon: const Icon(Icons.arrow_forward),
-                iconSize: 48),
+            widget.canEdit
+                ? IconButton(
+                    onPressed: () {
+                      setState(() {
+                        if (iconIndex < icons.length - 1) {
+                          iconIndex++;
+                        } else {
+                          iconIndex = 0;
+                        }
+                        widget.player.icon = icons[iconIndex];
+                      });
+                    },
+                    icon: const Icon(Icons.arrow_forward),
+                    iconSize: 48)
+                : Container()
           ],
         )
       ],

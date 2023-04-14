@@ -72,6 +72,7 @@ class _ResumeState extends State<Resume> {
                   Padding(
                     padding: const EdgeInsets.all(12),
                     child: CustomTextField(
+                        placeholder: "Pontuação para vencer",
                         controller: _controller,
                         type: 2,
                         onEdit: () {

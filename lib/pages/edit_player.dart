@@ -44,11 +44,16 @@ class _EditPlayerState extends State<EditPlayer> {
                 Flexible(
                     fit: FlexFit.loose,
                     flex: 2,
-                    child: PlayerFinalCard(player: _player)),
+                    child: PlayerFinalCard(
+                      player: _player,
+                      canEdit: true,
+                      showPoints: false,
+                    )),
                 Flexible(
                   flex: 2,
                   fit: FlexFit.tight,
                   child: CustomTextField(
+                    placeholder: "Nome do Jogador",
                     type: 1,
                     controller: _controller,
                     onEdit: () => {

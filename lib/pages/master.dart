@@ -35,16 +35,23 @@ class _MasterManagementState extends State<MasterManagement> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          PlayerFinalCard(
-            player: currentMaster,
-            canEdit: false,
-            showPoints: true,
+          Column(
+            children: [
+              const Text("O Artista Mestre é:",
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              PlayerFinalCard(
+                player: currentMaster,
+                canEdit: false,
+                showPoints: true,
+              ),
+            ],
           ),
           Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Column(
               children: [
                 CustomTextField(
@@ -52,7 +59,7 @@ class _MasterManagementState extends State<MasterManagement> {
                     onEdit: () {},
                     type: 1,
                     placeholder: "Título da Rodada"),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 CustomTextField(
                     controller: _themeController,
                     onEdit: () {},

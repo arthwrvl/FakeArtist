@@ -79,7 +79,8 @@ class _MasterManagementState extends State<MasterManagement> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => DisplayRoles(players: widget.players)));
+            builder: (context) => DisplayRoles(
+                players: widget.players, title: _wordController.text)));
   }
 
   void sortRoles() {

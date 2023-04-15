@@ -17,6 +17,8 @@ class DisplayRoles extends StatefulWidget {
 class _DisplayRolesState extends State<DisplayRoles> {
   late int index = 0;
   late List<Player> currentPlayers = List.of(widget.players);
+  late bool toggle = false;
+  late bool canNext = false;
 
   @override
   void initState() {
@@ -40,16 +42,21 @@ class _DisplayRolesState extends State<DisplayRoles> {
         children: [
           PlayerFinalCard(
               player: currentPlayers[index], canEdit: false, showPoints: true),
-          ThemeController(title: widget.title),
+          buildThemeController(currentPlayers[index].role),
           CustomButton(
+              disabled: !canNext,
               buttonText:
                   index < currentPlayers.length - 1 ? "Próximo" : "Finalizar",
               onPressed: () {
                 setState(() {
-                  if (index < currentPlayers.length - 1) {
-                    index++;
-                  } else {
-                    Navigator.pop(context);
+                  if (canNext) {
+                    if (index < currentPlayers.length - 1) {
+                      toggle = false;
+                      canNext = false;
+                      index++;
+                    } else {
+                      Navigator.pop(context);
+                    }
                   }
                 });
               },
@@ -58,24 +65,16 @@ class _DisplayRolesState extends State<DisplayRoles> {
       ),
     );
   }
-}
 
-class ThemeController extends StatefulWidget {
-  final String title;
-  //final String theme;
-  const ThemeController({super.key, required this.title});
-
-  @override
-  State<ThemeController> createState() => _ThemeControllerState();
-}
-
-class _ThemeControllerState extends State<ThemeController> {
-  late bool toggle = false;
-  @override
-  Widget build(BuildContext context) {
+  Widget buildThemeController(Role role) {
     return Container(
       child: toggle
           ? GestureDetector(
+              onTap: () {
+                setState(() {
+                  toggle = false;
+                });
+              },
               child: Container(
                   width: 240,
                   decoration: BoxDecoration(
@@ -84,7 +83,7 @@ class _ThemeControllerState extends State<ThemeController> {
                   child: Center(
                     child: Padding(
                       padding: const EdgeInsets.all(14),
-                      child: Text(widget.title,
+                      child: Text(role == Role.artist ? widget.title : "FALSO!",
                           style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold)),
                     ),
@@ -95,6 +94,7 @@ class _ThemeControllerState extends State<ThemeController> {
               onPressed: () {
                 setState(() {
                   toggle = true;
+                  canNext = true;
                 });
               },
               type: 2),

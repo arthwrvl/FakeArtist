@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:fake_artist/classes/player.dart';
-import 'package:fake_artist/pages/displayRoles.dart';
+import 'package:fake_artist/pages/display_roles.dart';
 import 'package:fake_artist/widgets/button.dart';
 import 'package:fake_artist/widgets/player_card.dart';
 import 'package:fake_artist/widgets/player_final_card.dart';

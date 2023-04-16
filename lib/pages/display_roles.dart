@@ -1,3 +1,4 @@
+import 'package:fake_artist/pages/round_result.dart';
 import 'package:fake_artist/widgets/button.dart';
 import 'package:fake_artist/widgets/player_final_card.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +56,11 @@ class _DisplayRolesState extends State<DisplayRoles> {
                       canNext = false;
                       index++;
                     } else {
-                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  RoundResults(playerClasses: widget.players)));
                     }
                   }
                 });
@@ -78,7 +83,9 @@ class _DisplayRolesState extends State<DisplayRoles> {
               child: Container(
                   width: 240,
                   decoration: BoxDecoration(
-                      color: const Color(0xFFF6D887),
+                      color: role == Role.artist
+                          ? Color(0xFFF6D887)
+                          : Color(0xFFFCACAC),
                       border: Border.all(color: Colors.black, width: 2)),
                   child: Center(
                     child: Padding(

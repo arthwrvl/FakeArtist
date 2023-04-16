@@ -84,16 +84,33 @@ class _PlayerCardState extends State<PlayerCard> {
             Container(
               padding: EdgeInsets.only(left: widget.size * .07),
               child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  widget.player.name,
-                  maxLines: 1,
-                  softWrap: false,
-                  overflow: TextOverflow.fade,
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-              ),
+                  alignment: Alignment.centerLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.player.name,
+                        maxLines: 1,
+                        softWrap: false,
+                        overflow: TextOverflow.fade,
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      widget.showPoints
+                          ? Text(
+                              widget.player.points != 1
+                                  ? '${widget.player.points} pontos'
+                                  : '${widget.player.points} ponto',
+                              maxLines: 1,
+                              softWrap: false,
+                              overflow: TextOverflow.fade,
+                              style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF74786B)))
+                          : Container(),
+                    ],
+                  )),
             ),
           ],
         ),

@@ -17,6 +17,7 @@ class RoundResults extends StatefulWidget {
 }
 
 class _RoundResultsState extends State<RoundResults> {
+  late int winner = 0;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -32,9 +33,17 @@ class _RoundResultsState extends State<RoundResults> {
           Column(
             children: [
               CustomButton(
-                  buttonText: "Artista Falso", onPressed: () {}, type: 1),
+                  buttonText: "Artista Falso",
+                  onPressed: fakeWins,
+                  type: 1,
+                  disabled: winner == 1),
               const SizedBox(height: 20),
-              CustomButton(buttonText: "Artistas", onPressed: () {}, type: 2),
+              CustomButton(
+                buttonText: "Artistas",
+                onPressed: artistWins,
+                type: 2,
+                disabled: winner == 2,
+              ),
             ],
           ),
           SizedBox(
@@ -63,9 +72,57 @@ class _RoundResultsState extends State<RoundResults> {
             ),
           ),
           CustomButton(
-              buttonText: "Próximo", onPressed: () {}, type: 1, disabled: true)
+              buttonText: "Próximo",
+              onPressed: () {},
+              type: 1,
+              disabled: winner == 0)
         ],
       ),
     );
+  }
+
+  void fakeWins() {
+    if (winner != 0) {
+      cancelWin();
+    }
+    winner = 1;
+    for (int i = 0; i < widget.playerClasses.length; i++) {
+      if (widget.playerClasses[i].role == Role.fake ||
+          widget.playerClasses[i].role == Role.master) {
+        setState(() {
+          widget.playerClasses[i].win();
+        });
+      }
+    }
+  }
+
+  void artistWins() {
+    if (winner != 0) {
+      cancelWin();
+    }
+    winner = 2;
+    for (int i = 0; i < widget.playerClasses.length; i++) {
+      if (widget.playerClasses[i].role == Role.artist) {
+        setState(() {
+          widget.playerClasses[i].win();
+        });
+      }
+    }
+  }
+
+  void cancelWin() {
+    for (int i = 0; i < widget.playerClasses.length; i++) {
+      if (winner == 2) {
+        if (widget.playerClasses[i].role == Role.artist) {
+          widget.playerClasses[i].cancelWin();
+        }
+      }
+      if (winner == 1) {
+        if (widget.playerClasses[i].role == Role.fake ||
+            widget.playerClasses[i].role == Role.master) {
+          widget.playerClasses[i].cancelWin();
+        }
+      }
+    }
   }
 }

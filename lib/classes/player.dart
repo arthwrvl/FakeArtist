@@ -30,4 +30,14 @@ class Player {
       points += 2;
     }
   }
+
+  void cancelWin() {
+    if (role == Role.artist) {
+      points -= 1;
+    } else if (role == Role.fake) {
+      points -= 2;
+    } else if (role == Role.master) {
+      points -= 2;
+    }
+  }
 }

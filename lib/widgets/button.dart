@@ -36,7 +36,11 @@ class _CustomButtonState extends State<CustomButton> {
           _pressing = false;
         });
       },
-      onTap: widget.onPressed,
+      onTap: () {
+        if (!disabled) {
+          widget.onPressed();
+        }
+      },
       onTapUp: (details) {
         setState(() {
           _pressing = false;

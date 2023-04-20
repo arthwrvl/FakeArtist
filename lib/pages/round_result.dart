@@ -9,8 +9,9 @@ import '../widgets/player_card.dart';
 
 class RoundResults extends StatefulWidget {
   final List<Player> playerClasses;
-
-  const RoundResults({super.key, required this.playerClasses});
+  final int points;
+  const RoundResults(
+      {super.key, required this.playerClasses, required this.points});
 
   @override
   State<RoundResults> createState() => _RoundResultsState();
@@ -73,12 +74,28 @@ class _RoundResultsState extends State<RoundResults> {
           ),
           CustomButton(
               buttonText: "Próximo",
-              onPressed: () {},
+              onPressed: finishRound,
               type: 1,
               disabled: winner == 0)
         ],
       ),
     );
+  }
+
+  void finishRound() {
+    bool hasWinner = false;
+    for (int i = 0; i < widget.playerClasses.length; i++) {
+      if (widget.playerClasses[i].points >= widget.points) {
+        //finish
+        hasWinner = true;
+      }
+    }
+    if (!hasWinner) {
+      int counter = 0;
+      Navigator.popUntil(context, (route) {
+        return counter++ == 2;
+      });
+    }
   }
 
   void fakeWins() {

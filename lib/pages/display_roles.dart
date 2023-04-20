@@ -9,7 +9,12 @@ import '../classes/player.dart';
 class DisplayRoles extends StatefulWidget {
   final List<Player> players;
   final String title;
-  const DisplayRoles({super.key, required this.players, required this.title});
+  final int points;
+  const DisplayRoles(
+      {super.key,
+      required this.players,
+      required this.title,
+      required this.points});
 
   @override
   State<DisplayRoles> createState() => _DisplayRolesState();
@@ -59,8 +64,9 @@ class _DisplayRolesState extends State<DisplayRoles> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  RoundResults(playerClasses: widget.players)));
+                              builder: (context) => RoundResults(
+                                  playerClasses: widget.players,
+                                  points: widget.points)));
                     }
                   }
                 });

@@ -80,7 +80,15 @@ class _MasterManagementState extends State<MasterManagement> {
         context,
         MaterialPageRoute(
             builder: (context) => DisplayRoles(
-                players: widget.players, title: _wordController.text)));
+                players: widget.players,
+                title: _wordController.text,
+                points: widget.maxPoints))).then((_) {
+      setState(() {
+        sortRoles();
+        _themeController = TextEditingController();
+        _wordController = TextEditingController();
+      });
+    });
   }
 
   void sortRoles() {

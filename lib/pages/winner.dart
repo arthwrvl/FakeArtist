@@ -1,3 +1,4 @@
+import 'package:fake_artist/widgets/button.dart';
 import 'package:fake_artist/widgets/player_final_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -20,14 +21,19 @@ class _WinnerState extends State<Winner> {
       resizeToAvoidBottomInset: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           buildBanner(),
           PlayerFinalCard(
-              player: widget.winner, canEdit: false, showPoints: true)
+              player: widget.winner, canEdit: false, showPoints: true),
+          CustomButton(buttonText: "Terminar", onPressed: finishGame, type: 1),
         ],
       ),
     );
+  }
+
+  void finishGame() {
+    Navigator.popUntil(context, (route) => route.isFirst);
   }
 
   Widget buildBanner() {

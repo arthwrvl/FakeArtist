@@ -1,3 +1,4 @@
+import 'package:fake_artist/pages/winner.dart';
 import 'package:fake_artist/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -86,7 +87,10 @@ class _RoundResultsState extends State<RoundResults> {
     bool hasWinner = false;
     for (int i = 0; i < widget.playerClasses.length; i++) {
       if (widget.playerClasses[i].points >= widget.points) {
-        //finish
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Winner(winner: widget.playerClasses[i])));
         hasWinner = true;
       }
     }

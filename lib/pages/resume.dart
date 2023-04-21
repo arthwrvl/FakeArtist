@@ -77,7 +77,7 @@ class _ResumeState extends State<Resume> {
                         type: 2,
                         onEdit: () {
                           setState(() {
-                            maxValue = int.parse(_controller.text);
+                            maxValue = int.tryParse(_controller.text) ?? 0;
                           });
                         }),
                   ),
@@ -91,6 +91,7 @@ class _ResumeState extends State<Resume> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     CustomButton(
+                        disabled: maxValue == 0,
                         buttonText: "Iniciar Partida",
                         onPressed: callMaster,
                         type: 1),

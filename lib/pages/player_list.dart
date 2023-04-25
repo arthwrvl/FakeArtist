@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:fake_artist/classes/player.dart';
 import 'package:fake_artist/data/players.dart';
 import 'package:fake_artist/pages/edit_player.dart';
@@ -22,14 +24,18 @@ class PlayerGrid extends StatefulWidget {
 
 class _PlayerGridState extends State<PlayerGrid> {
   List<Player> playerClasses = List.empty(growable: true);
+  Random rd = Random();
   bool start = true;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     if (start) {
       start = false;
-      for (int i = 0; i < players.length; i++) {
-        playerClasses.add(Player(players[i], colors[0], icons[0]));
+      for (int i = 0; i < 5; i++) {
+        playerClasses.add(Player(
+            "Jogador ${i + 1}",
+            colors[rd.nextInt(colors.length)],
+            icons[rd.nextInt(icons.length)]));
       }
     }
     return Scaffold(
@@ -60,9 +66,9 @@ class _PlayerGridState extends State<PlayerGrid> {
                   onTap: () {
                     setState(() {
                       addPlayer(Player(
-                          players[playerClasses.length],
-                          colors[playerClasses.length],
-                          icons[playerClasses.length]));
+                          "Jogador ${playerClasses.length + 1}",
+                          colors[rd.nextInt(colors.length)],
+                          icons[rd.nextInt(icons.length)]));
                     });
                   },
                 )
@@ -97,14 +103,17 @@ class _PlayerGridState extends State<PlayerGrid> {
           Padding(
             padding: const EdgeInsets.only(top: 20),
             child: CustomButton(
+                disabled: playerClasses.length < 4,
                 buttonText: "Avançar",
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            Resume(playerClasses: playerClasses),
-                      ));
+                  if (playerClasses.length >= 4) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              Resume(playerClasses: playerClasses),
+                        ));
+                  }
                 },
                 type: 1),
           ),

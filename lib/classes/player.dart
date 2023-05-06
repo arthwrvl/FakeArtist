@@ -1,3 +1,4 @@
+import 'package:fake_artist/data/PlayersDatabase.dart';
 import 'package:flutter/material.dart';
 import 'package:fake_artist/styles/colors.dart';
 import 'package:fake_artist/styles/drawings.dart';
@@ -5,10 +6,10 @@ import 'package:fake_artist/styles/drawings.dart';
 enum Role { master, fake, artist }
 
 class Player {
-  String name = "";
+  String name;
   int points = 0;
-  Color background = babyblue;
-  String icon = line1;
+  Color background;
+  String icon;
   Role role = Role.artist;
 
   Player(this.name, this.background, this.icon);
@@ -40,4 +41,10 @@ class Player {
       points -= 2;
     }
   }
+
+  static Player fromJson(Map<String, Object?> json) => Player(
+        json[PlayerFields.name] as String,
+        Color(json[PlayerFields.color] as int),
+        json[PlayerFields.icon] as String,
+      );
 }
